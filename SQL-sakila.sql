@@ -153,7 +153,7 @@ INNER JOIN inventory ON film.film_id = inventory.film_id
 INNER JOIN rental ON inventory.inventory_id = rental.inventory_id
 GROUP BY film.title ORDER BY n_rented DESC;
 
--- 7f. Write a query to display how much business, in dollars, each store brought in.
+-- 7f. Write a query to display how much business, in dollars, each store brought in.-------------------------------
 SELECT SUM(payment.amount) AS total_amount, store.store_id
 FROM payment 
 INNER JOIN rental ON payment.rental_id = rental.rental_id
@@ -173,9 +173,10 @@ SELECT  category.name, SUM(payment.amount) AS gross_revenue
 FROM category 
 INNER JOIN film_category ON category.category_id = film_category.category_id
 INNER JOIN inventory ON inventory.film_id = film_category.film_id
-INNER JOIN rental ON inventory.film_id = rental.inventory_id
+INNER JOIN rental ON inventory.inventory_id = rental.inventory_id
 INNER JOIN payment ON payment.rental_id = rental.rental_id
-GROUP BY category.name LIMIT 5;
+GROUP BY category.name 
+ORDER BY gross_revenue DESC LIMIT 5;
 
 -- 8a. Use the solution from the problem above to create a view.
 CREATE VIEW top_five_genres
