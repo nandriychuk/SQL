@@ -153,7 +153,7 @@ INNER JOIN inventory ON film.film_id = inventory.film_id
 INNER JOIN rental ON inventory.inventory_id = rental.inventory_id
 GROUP BY film.title ORDER BY n_rented DESC;
 
--- 7f. Write a query to display how much business, in dollars, each store brought in.-------------------------------
+-- 7f. Write a query to display how much business, in dollars, each store brought in.
 SELECT SUM(payment.amount) AS total_amount, store.store_id
 FROM payment 
 INNER JOIN rental ON payment.rental_id = rental.rental_id
